@@ -52,7 +52,10 @@
       subMaxLevel: 0,
       maxLevel: 4,
       auto2top: true,
-      relativePath: true,
+      // false: sidebar links are resolved from the site root. With `true`, a link
+      // like `folder/note.md` clicked while already inside `/folder/` resolves to
+      // `/folder/folder/note.md` → 404.
+      relativePath: false,
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       },
