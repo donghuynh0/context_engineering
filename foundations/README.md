@@ -13,8 +13,3 @@ _None yet. This is where I'll capture the fundamentals as I learn them._
 - Embeddings & vector space
 - Training vs. fine-tuning vs. inference
 - Temperature, top-p, and sampling
-
-> [!TIP]
-> To add a note here, create a file like `foundations/tokens.md`, then add a
-> line under **Foundations** in [`_sidebar.md`](_sidebar.md). See
-> [How to add knowledge](guide/how-to-add-knowledge.md).

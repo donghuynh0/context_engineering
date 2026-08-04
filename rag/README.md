@@ -13,7 +13,3 @@ _None yet._
 - Embeddings & vector databases
 - Retrieval → rerank → generate pipeline
 - Evaluating RAG quality
-
-> [!TIP]
-> Add a note by creating `rag/your-topic.md` and linking it in
-> [`_sidebar.md`](_sidebar.md).

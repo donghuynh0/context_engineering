@@ -15,7 +15,3 @@ memory.
 - Multi-agent systems
 - Planning & reflection
 - Guardrails and evaluation
-
-> [!TIP]
-> Add a note by creating `agents/your-topic.md` and linking it in
-> [`_sidebar.md`](_sidebar.md).

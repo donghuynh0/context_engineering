@@ -14,7 +14,3 @@ _None yet._
 - Short-term vs. long-term memory
 - Compaction & summarization strategies
 - Assembling context from multiple sources
-
-> [!TIP]
-> Add a note by creating `context-engineering/your-topic.md` and linking it in
-> [`_sidebar.md`](_sidebar.md).

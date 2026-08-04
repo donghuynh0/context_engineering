@@ -13,7 +13,3 @@ _None yet._
 - Role / system prompts
 - Structured output (JSON, schemas)
 - Common failure modes and how to fix them
-
-> [!TIP]
-> Add a note by creating `prompt-engineering/your-topic.md` and linking it in
-> [`_sidebar.md`](_sidebar.md).

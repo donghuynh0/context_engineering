@@ -14,7 +14,3 @@ _None yet._
 ## Tools & docs
 
 _None yet._
-
-> [!TIP]
-> Keep this page as your bibliography — whenever a note cites a source, add it
-> here too so you can find it again later.
