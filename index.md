@@ -1,4 +1,5 @@
 # Difference between LLM Workflow and AI Agents
+[source](https://www.anthropic.com/engineering/building-effective-agents)
 
 ## LLM Workflows: The Predefined Path
 
