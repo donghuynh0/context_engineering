@@ -1,1 +1,1 @@
-# donghuynh'0 notes in learning AI journey
+# donghuynh0's notes in learning AI journey
