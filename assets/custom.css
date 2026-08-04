@@ -22,6 +22,11 @@
 
   --sidebar-width: 280px;
 
+  /* "Side panel" icon used by the sidebar hide/show button. The divider sits on
+     the right because that's the side our sidebar is on — swap `M15 3v18` for
+     `M9 3v18` to mirror it to the left. */
+  --icon-panel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M15 3v18'/%3E%3C/svg%3E");
+
   --font-serif: Georgia, "Times New Roman", "Songti SC", serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -171,15 +176,17 @@ body.close .sidebar-toggle {
 .sidebar-toggle { right: calc(var(--sidebar-width) + 14px); }  /* just outside the open sidebar */
 .sidebar-toggle:hover { transform: scale(1.08); }
 .sidebar-toggle .sidebar-toggle-button { display: none; }   /* hide Docsify's default bars */
+/* Icon: the standard "side panel" glyph. Drawn as an SVG mask so it always
+   picks up the accent color in both light and dark themes. */
 .sidebar-toggle::before {
-  content: "\2715";                  /* ✕ : sidebar is open, click to hide it */
-  color: var(--accent);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
+  content: "";
+  width: 19px;
+  height: 19px;
+  background-color: var(--accent);
+  -webkit-mask: var(--icon-panel) center / contain no-repeat;
+  mask: var(--icon-panel) center / contain no-repeat;
 }
 body.close .sidebar-toggle { right: 14px; }                 /* screen's edge once hidden */
-body.close .sidebar-toggle::before { content: "\2261"; }    /* ☰ : sidebar is hidden, click to show it */
 
 /* hide the toggle while the cover / launch page is on screen */
 section.cover.show ~ main .sidebar-toggle { display: none; }
@@ -249,6 +256,29 @@ section.cover .cover-main > p:last-child a:hover {
 
 /* horizontal rules */
 .markdown-section hr { border-bottom: 1px solid var(--border); }
+
+/* note metadata line, sits under the title: status · updated · source */
+.markdown-section .note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: -4px 0 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--muted);
+}
+.markdown-section .note-meta a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.markdown-section .note-meta a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
 
 /* status tag pill */
 .tag {

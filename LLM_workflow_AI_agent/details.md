@@ -1,7 +1,10 @@
 # Difference between LLM Workflow and AI Agents
 
-> **Status:** <span class="tag">Completed</span> &nbsp;·&nbsp; **Updated:** 2026-08-04
-> **Source:** <https://www.anthropic.com/engineering/building-effective-agents>
+<p class="note-meta">
+  <span class="tag">Completed</span>
+  <span>Updated 2026-08-04</span>
+  <a href="https://www.anthropic.com/engineering/building-effective-agents">Source: Anthropic</a>
+</p>
 
 ## LLM Workflows: The Predefined Path
 

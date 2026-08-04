@@ -1,7 +1,10 @@
-# <!-- TITLE OF THE NOTE -->
+# TITLE OF THE NOTE
 
-> **Section:** <!-- e.g. Prompt Engineering --> &nbsp;·&nbsp; **Status:** <span class="tag">draft</span> &nbsp;·&nbsp; **Updated:** <!-- YYYY-MM-DD -->
-> **Source:** <!-- [Name](https://link) — or "personal notes" -->
+<p class="note-meta">
+  <span class="tag">draft</span>
+  <span>Updated YYYY-MM-DD</span>
+  <a href="https://link">Source: Name</a>
+</p>
 
 <!-- One or two sentences summarizing what this note is about. -->
 
