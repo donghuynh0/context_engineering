@@ -4,4 +4,4 @@
 
 > Notes on everything I learn about AI.
 
-[Enter →](foundations/README.md)
+[Enter →](notes.md)

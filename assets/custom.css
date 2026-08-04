@@ -141,45 +141,51 @@ body.close .content { left: 0; right: 0; }
 .sidebar-nav > ul > li { margin: 8px 0; }
 
 /* =========================================================================
-   SIDEBAR HIDE / SHOW TOGGLE  — a tab on the sidebar's edge
+   SIDEBAR HIDE / SHOW TOGGLE — a clear round button, mirrors #theme-toggle.
+   Sits just outside the sidebar's left edge when open, and at the screen's
+   right edge when closed, so it's always reachable and never overlaps content.
    ========================================================================= */
-.sidebar-toggle {
-  position: fixed;
-  left: auto;                        /* override Docsify's default left:0 */
-  top: 50%;
-  transform: translateY(-50%);
-  right: var(--sidebar-width);       /* sits at the sidebar's left edge */
-  width: 26px;
-  height: 54px;
+.sidebar-toggle,
+body.close .sidebar-toggle {
+  position: fixed !important;
+  left: auto !important;                          /* Docsify's own theme sets a specific left
+                                                        via `body.close .sidebar-toggle`, which
+                                                        beats a plain `.sidebar-toggle` rule —
+                                                        !important guarantees ours wins */
+  top: 14px !important;
+  bottom: auto !important;
+  width: 40px !important;
+  height: 40px !important;
   padding: 0;
-  background: var(--accent);
-  border: none;
-  border-radius: 8px 0 0 8px;
-  box-shadow: -1px 0 8px rgba(0, 0, 0, 0.35);
-  z-index: 40;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 50;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: right 0.25s ease, background 0.15s;
+  transition: right 0.25s ease, background 0.15s, transform 0.15s;
 }
-.sidebar-toggle:hover { background: var(--accent-dim); }
-.sidebar-toggle .sidebar-toggle-button { display: none; }   /* hide default bars */
+.sidebar-toggle { right: calc(var(--sidebar-width) + 14px); }  /* just outside the open sidebar */
+.sidebar-toggle:hover { transform: scale(1.08); }
+.sidebar-toggle .sidebar-toggle-button { display: none; }   /* hide Docsify's default bars */
 .sidebar-toggle::before {
-  content: "\203A";                  /* › : hide the sidebar */
-  color: var(--on-accent);
-  font-size: 22px;
+  content: "\2715";                  /* ✕ : sidebar is open, click to hide it */
+  color: var(--accent);
+  font-size: 16px;
   font-weight: 700;
   line-height: 1;
 }
-body.close .sidebar-toggle { right: 0; }                    /* stick to screen edge */
-body.close .sidebar-toggle::before { content: "\2039"; }    /* ‹ : show the sidebar */
+body.close .sidebar-toggle { right: 14px; }                 /* screen's edge once hidden */
+body.close .sidebar-toggle::before { content: "\2261"; }    /* ☰ : sidebar is hidden, click to show it */
 
 /* hide the toggle while the cover / launch page is on screen */
 section.cover.show ~ main .sidebar-toggle { display: none; }
 
 /* =========================================================================
-   MOBILE — sidebar slides in from the RIGHT (toggle semantics flip)
+   MOBILE — sidebar overlays from the RIGHT; toggle stays pinned to the corner
    ========================================================================= */
 @media screen and (max-width: 768px) {
   .content { left: 0; right: 0; }
@@ -187,10 +193,10 @@ section.cover.show ~ main .sidebar-toggle { display: none; }
   body.close .sidebar { transform: translateX(0); }
   body.close .content { transform: translateX(calc(-1 * var(--sidebar-width))); }
 
-  .sidebar-toggle { right: 0; }
-  .sidebar-toggle::before { content: "\2039"; }             /* ‹ : open */
-  body.close .sidebar-toggle { right: var(--sidebar-width); }
-  body.close .sidebar-toggle::before { content: "\203A"; }  /* › : close */
+  .sidebar-toggle,
+  body.close .sidebar-toggle { right: 14px !important; }
+  .sidebar-toggle::before { content: "\2261"; }              /* ☰ : open the sidebar */
+  body.close .sidebar-toggle::before { content: "\2715"; }   /* ✕ : close the sidebar */
 }
 
 /* =========================================================================
