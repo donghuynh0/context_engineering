@@ -1,7 +1,7 @@
 # <!-- TITLE OF THE NOTE -->
 
-> **Section:** <!-- e.g. Prompt Engineering --> &nbsp;·&nbsp; **Status:** <span class="tag">draft</span> &nbsp;·&nbsp; **Updated:** <!-- YYYY-MM-DD -->
-> **Source:** <!-- [Name](https://link) — or "personal notes" -->
+**Status:** <span class="tag">Completed</span> &nbsp;·&nbsp; **Updated:** < 2026-08-04 >
+> **Source:** <https://www.anthropic.com/engineering/building-effective-agents>
 
 # Difference between LLM Workflow and AI Agents
 
