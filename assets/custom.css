@@ -1,40 +1,66 @@
 /* =========================================================================
-   My AI Learning Journey — warm, minimal theme
-   - Navigation sidebar on the RIGHT
-   - Simple flat list of sections
-   - Warm color palette
+   My AI Learning Journey — dark "book" theme
+   Palette matched to learningai.vn: dark warm background, cream serif text,
+   soft sage accent. Sidebar on the RIGHT with a hide/show toggle.
    ========================================================================= */
 
 :root {
-  --theme-color: #d9773f;          /* warm terracotta accent */
-  --theme-color-dark: #b85d2c;
+  --bg: #211c13;            /* page background (dark warm) */
+  --surface: #2a2416;       /* sidebar / elevated panels */
+  --surface-2: #322a19;     /* inputs, code */
+  --text: #ede6d6;          /* main text (cream) */
+  --muted: #b3a88f;         /* secondary text */
+  --link: #cbbd98;          /* body links (warm tan) */
+  --accent: #8fc6b7;        /* sage accent */
+  --accent-dim: #79b3a3;
+  --border: #3b3423;        /* borders */
+
   --sidebar-width: 280px;
-  --text-color: #3d332e;           /* warm near-black */
-  --muted: #9c8b7c;                /* warm gray */
-  --sidebar-bg: #fdf8f1;           /* warm cream */
-  --border-color: #efe2d2;         /* warm tan */
-  --content-bg: #fffdfa;           /* barely-warm white */
+
+  --font-serif: Georgia, "Times New Roman", "Songti SC", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
 
-/* ---- Base ---------------------------------------------------------------- */
+/* ---- Base --------------------------------------------------------------- */
+html, body { background: var(--bg); }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji";
-  color: var(--text-color);
-  background: var(--content-bg);
+  color: var(--text);
+  font-family: var(--font-serif);
 }
+::selection { background: rgba(143, 198, 183, 0.28); }
+
+.content { background: var(--bg); left: 0; right: var(--sidebar-width); }
+.markdown-section { max-width: 760px; font-family: var(--font-serif); }
 
 .markdown-section h1,
 .markdown-section h2,
-.markdown-section h3 {
+.markdown-section h3,
+.markdown-section h4 {
+  font-family: var(--font-serif);
+  color: var(--text);
   font-weight: 700;
-  color: var(--text-color);
 }
 .markdown-section h2 {
   padding-top: 8px;
-  border-bottom: 1px solid var(--border-color);
   padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
 }
+.markdown-section p,
+.markdown-section li { color: var(--text); }
+.markdown-section a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+.markdown-section a:hover { color: var(--accent); }
+/* heading permalinks (Docsify wraps heading text in <a>) must not look like links */
+.markdown-section h1 a, .markdown-section h2 a,
+.markdown-section h3 a, .markdown-section h4 a,
+.markdown-section .anchor, .markdown-section .anchor span {
+  color: var(--text);
+  text-decoration: none;
+}
+.markdown-section strong { color: var(--text); font-weight: 700; }
+
+/* top loading bar */
+.progress { background-color: var(--accent) !important; }
 
 /* =========================================================================
    SIDEBAR ON THE RIGHT
@@ -42,129 +68,159 @@ body {
 .sidebar {
   left: auto;
   right: 0;
+  width: var(--sidebar-width);       /* pin width so the collapse fully hides it */
+  background: var(--surface);
   border-right: none;
-  border-left: 1px solid var(--border-color);
-  background: var(--sidebar-bg);
+  border-left: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-sans);
   transition: transform 0.25s ease;
 }
-.content {
-  left: 0;
-  right: var(--sidebar-width);
-}
-.sidebar-toggle {
-  left: auto;
-  right: 0;
-  background-color: transparent;
-}
-.sidebar-toggle .sidebar-toggle-button:hover { opacity: 0.7; }
-.sidebar-toggle span { background-color: var(--theme-color); }
-
 body.close .sidebar { transform: translateX(var(--sidebar-width)); }
 body.close .content { left: 0; right: 0; }
-body.close .sidebar-toggle { right: 0; width: auto; }
 
-/* Search box */
+/* site title */
+.sidebar > h1 { margin: 1.1rem 0 0.5rem; font-size: 1.1rem; text-align: center; }
+.sidebar > h1 a { color: var(--text); font-weight: 700; }
+
+/* search box */
 .sidebar .search {
   margin-bottom: 6px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
 }
-.sidebar .search input { background: #fff; }
+.sidebar .search input {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.sidebar .search input::placeholder { color: var(--muted); }
 .sidebar .search .clear-button { cursor: pointer; }
+.sidebar .search .matching-post { border-bottom: 1px solid var(--border); }
+.sidebar .search p { color: var(--muted); }
+.sidebar .search .search-keyword { color: var(--accent); }
 
-/* Site title at top of sidebar */
-.sidebar > h1 {
-  margin: 1.1rem 0 0.4rem;
-  font-size: 1.15rem;
-  text-align: center;
-}
-.sidebar > h1 a { color: var(--text-color); font-weight: 700; }
-
-/* ---- Flat section list -------------------------------------------------- */
-/* Top-level items = sections */
+/* section list (flat) */
 .sidebar-nav > ul > li > a {
-  color: var(--text-color);
+  color: var(--text);
   font-size: 15px;
   font-weight: 600;
   padding: 4px 0;
-  transition: color 0.15s;
 }
-/* Nested items = notes inside a section */
 .sidebar-nav > ul > li > ul > li > a {
   color: var(--muted);
   font-size: 13.5px;
   font-weight: 400;
 }
-.sidebar ul li a:hover { color: var(--theme-color); }
-.sidebar ul li.active > a {
-  color: var(--theme-color);
-  font-weight: 700;
-  border-right: none;
-}
+.sidebar ul li a { transition: color 0.15s; }
+.sidebar ul li a:hover { color: var(--accent); }
+.sidebar ul li.active > a { color: var(--accent); font-weight: 700; border-right: none; }
 .sidebar-nav > ul > li { margin: 8px 0; }
 
 /* =========================================================================
-   MOBILE — slide the sidebar in from the RIGHT
+   SIDEBAR HIDE / SHOW TOGGLE  — a tab on the sidebar's edge
+   ========================================================================= */
+.sidebar-toggle {
+  position: fixed;
+  left: auto;                        /* override Docsify's default left:0 */
+  top: 50%;
+  transform: translateY(-50%);
+  right: var(--sidebar-width);       /* sits at the sidebar's left edge */
+  width: 26px;
+  height: 54px;
+  padding: 0;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px 0 0 8px;
+  box-shadow: -1px 0 8px rgba(0, 0, 0, 0.35);
+  z-index: 40;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.25s ease, background 0.15s;
+}
+.sidebar-toggle:hover { background: var(--accent-dim); }
+.sidebar-toggle .sidebar-toggle-button { display: none; }   /* hide default bars */
+.sidebar-toggle::before {
+  content: "\203A";                  /* › : hide the sidebar */
+  color: #1c1710;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+body.close .sidebar-toggle { right: 0; }                    /* stick to screen edge */
+body.close .sidebar-toggle::before { content: "\2039"; }    /* ‹ : show the sidebar */
+
+/* hide the toggle while the cover / launch page is on screen */
+section.cover.show ~ main .sidebar-toggle { display: none; }
+
+/* =========================================================================
+   MOBILE — sidebar slides in from the RIGHT (toggle semantics flip)
    ========================================================================= */
 @media screen and (max-width: 768px) {
   .content { left: 0; right: 0; }
-  .sidebar {
-    right: 0;
-    left: auto;
-    transform: translateX(var(--sidebar-width));
-  }
+  .sidebar { right: 0; left: auto; transform: translateX(var(--sidebar-width)); }
   body.close .sidebar { transform: translateX(0); }
   body.close .content { transform: translateX(calc(-1 * var(--sidebar-width))); }
-  .sidebar-toggle { right: 0; left: auto; }
+
+  .sidebar-toggle { right: 0; }
+  .sidebar-toggle::before { content: "\2039"; }             /* ‹ : open */
+  body.close .sidebar-toggle { right: var(--sidebar-width); }
+  body.close .sidebar-toggle::before { content: "\203A"; }  /* › : close */
 }
 
 /* =========================================================================
-   COVER (launching page) — warm gradient, minimal
+   COVER (launching page) — dark warm, minimal
    ========================================================================= */
 section.cover {
-  background: linear-gradient(135deg, #fdf3e6 0%, #f4d3ab 100%) !important;
+  background: radial-gradient(circle at 30% 30%, #2c2517 0%, #211c13 70%) !important;
 }
-section.cover .cover-main > h1 { color: var(--text-color); }
-section.cover .cover-main > h1 a { color: var(--text-color); }
-section.cover blockquote p {
-  color: #6f5d4d;
-  font-size: 1.4rem;
-}
-/* the single "Enter" button */
+section.cover .cover-main > h1 a,
+section.cover .cover-main > h1 { color: var(--text); font-family: var(--font-serif); }
+section.cover blockquote p { color: var(--muted); font-size: 1.35rem; }
 section.cover .cover-main > p:last-child a {
   border-radius: 30px;
-  border: 2px solid var(--theme-color);
-  color: var(--theme-color-dark);
-  padding: 0.6em 2em;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  padding: 0.55em 2em;
   transition: all 0.2s;
 }
 section.cover .cover-main > p:last-child a:hover {
-  background: var(--theme-color);
-  color: #fff;
-  border-color: var(--theme-color);
+  background: var(--accent);
+  color: #1c1710;
+  border-color: var(--accent);
 }
 
 /* =========================================================================
-   Content polish (warm accents)
+   Content polish
    ========================================================================= */
-.markdown-section { max-width: 780px; }
-
-.markdown-section a { color: var(--theme-color-dark); }
-
 .markdown-section blockquote {
-  border-left: 4px solid var(--theme-color);
-  background: #fdf1e6;
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
   border-radius: 0 6px 6px 0;
-  color: #6f5d4d;
+  color: var(--muted);
 }
+.markdown-section blockquote a { color: var(--link); }
 
-.markdown-section table { display: table; width: 100%; }
-.markdown-section tr:nth-child(2n) { background-color: #fbf5ee; }
+.markdown-section table { display: table; width: 100%; border-color: var(--border); }
+.markdown-section th { background: var(--surface); color: var(--text); }
+.markdown-section td { border-color: var(--border); }
+.markdown-section tr { border-top-color: var(--border); background: transparent; }
+.markdown-section tr:nth-child(2n) { background-color: var(--surface); }
 
 .markdown-section code {
-  color: var(--theme-color-dark);
-  background: #fbeadc;
+  color: var(--accent);
+  background: var(--surface-2);
 }
-.markdown-section pre { border-radius: 8px; }
+.markdown-section pre { background: var(--surface-2); border-radius: 8px; }
+.markdown-section pre > code { background: transparent; color: var(--text); }
+.token.comment { color: #8a7f6a; }
+
+/* horizontal rules */
+.markdown-section hr { border-bottom: 1px solid var(--border); }
 
 /* status tag pill */
 .tag {
@@ -172,7 +228,15 @@ section.cover .cover-main > p:last-child a:hover {
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 10px;
-  background: #fbeadc;
-  color: var(--theme-color-dark);
+  background: var(--surface-2);
+  color: var(--accent);
+  border: 1px solid var(--border);
   vertical-align: middle;
+}
+
+/* copy-code button (dark) */
+.docsify-copy-code-button {
+  background: var(--surface) !important;
+  color: var(--muted) !important;
+  border: 1px solid var(--border);
 }
