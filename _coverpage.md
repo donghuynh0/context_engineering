@@ -10,4 +10,4 @@
 - ✍️ Prompt Engineering
 
 [Browse the knowledge base](#my-ai-learning-journey)
-[GitHub](https://github.com/donghuynh0/context_engineering)
+[GitHub](https://github.com/donghuynh0/ai-learning-journey)

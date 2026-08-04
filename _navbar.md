@@ -2,4 +2,4 @@
 
 - [Home](/)
 - [How to add knowledge](guide/how-to-add-knowledge.md)
-- [GitHub](https://github.com/donghuynh0/context_engineering)
+- [GitHub](https://github.com/donghuynh0/ai-learning-journey)

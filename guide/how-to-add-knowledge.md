@@ -6,7 +6,7 @@ process takes about a minute.
 ## How the site is structured
 
 ```
-context_engineering/
+ai-learning-journey/
 ├── index.html          ← the app + config (rarely touched)
 ├── assets/custom.css   ← styling (sidebar on the right, colors)
 ├── _sidebar.md         ← the RIGHT-hand navigation  ⭐ you edit this
@@ -71,7 +71,7 @@ git push
 ```
 
 GitHub Pages rebuilds automatically. Your note is live at
-`https://donghuynh0.github.io/context_engineering/` within a minute or two.
+`https://donghuynh0.github.io/ai-learning-journey/` within a minute or two.
 
 ---
 
