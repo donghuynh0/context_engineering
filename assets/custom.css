@@ -5,18 +5,17 @@
    ========================================================================= */
 
 :root {
-  /* ---- DARK theme (default) ---- */
-  --bg: #211c13;            /* page background (dark warm) */
-  --surface: #2a2416;       /* sidebar / elevated panels */
-  --surface-2: #322a19;     /* inputs, code */
-  --text: #ede6d6;          /* main text (cream) */
-  --muted: #b3a88f;         /* secondary text */
-  --link: #cbbd98;          /* body links (warm tan) */
+  /* ---- DARK theme (default) — softened, warm charcoal rather than near-black ---- */
+  --bg: #332e24;            /* page background */
+  --surface: #3d3729;       /* sidebar / elevated panels */
+  --surface-2: #47402f;     /* inputs, code */
+  --text: #f0eade;          /* main text (cream) */
+  --muted: #bcb19a;         /* secondary text */
+  --link: #d3c6a4;          /* body links (warm tan) */
   --accent: #8fc6b7;        /* sage accent */
   --accent-dim: #79b3a3;
-  --on-accent: #1c1710;     /* text/icon that sits ON the accent color */
-  --border: #3b3423;        /* borders */
-  --cover-grad: radial-gradient(circle at 30% 30%, #2c2517 0%, #211c13 70%);
+  --on-accent: #262119;     /* text/icon that sits ON the accent color */
+  --border: #554c3a;        /* borders */
   --selection: rgba(143, 198, 183, 0.28);
   color-scheme: dark;
 
@@ -44,7 +43,6 @@
   --accent-dim: #164a43;
   --on-accent: #f6f1e7;     /* cream text on the teal accent */
   --border: #e2d9c6;        /* light warm tan */
-  --cover-grad: radial-gradient(circle at 30% 30%, #fbf8f0 0%, #f6f1e7 70%);
   --selection: rgba(30, 95, 86, 0.18);
   color-scheme: light;
 }
@@ -188,9 +186,6 @@ body.close .sidebar-toggle {
 }
 body.close .sidebar-toggle { right: 14px; }                 /* screen's edge once hidden */
 
-/* hide the toggle while the cover / launch page is on screen */
-section.cover.show ~ main .sidebar-toggle { display: none; }
-
 /* =========================================================================
    MOBILE — sidebar overlays from the RIGHT; toggle stays pinned to the corner
    ========================================================================= */
@@ -202,31 +197,6 @@ section.cover.show ~ main .sidebar-toggle { display: none; }
 
   .sidebar-toggle,
   body.close .sidebar-toggle { right: 14px !important; }
-  .sidebar-toggle::before { content: "\2261"; }              /* ☰ : open the sidebar */
-  body.close .sidebar-toggle::before { content: "\2715"; }   /* ✕ : close the sidebar */
-}
-
-/* =========================================================================
-   COVER (launching page) — dark warm, minimal
-   ========================================================================= */
-section.cover {
-  background: var(--cover-grad) !important;
-}
-section.cover .cover-main > h1 a,
-section.cover .cover-main > h1 { color: var(--text); font-family: var(--font-serif); }
-section.cover blockquote p { color: var(--muted); font-size: 1.35rem; }
-section.cover .cover-main > p:last-child a {
-  border-radius: 30px;
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  background: transparent;
-  padding: 0.55em 2em;
-  transition: all 0.2s;
-}
-section.cover .cover-main > p:last-child a:hover {
-  background: var(--accent);
-  color: var(--on-accent);
-  border-color: var(--accent);
 }
 
 /* =========================================================================

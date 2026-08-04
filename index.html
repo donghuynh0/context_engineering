@@ -6,6 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="A personal, growing knowledge base documenting what I learn about AI — agents, context engineering, RAG, prompting, and foundations." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <!-- Land on the welcome page (#/notes) rather than a bare '/' route -->
+  <script>
+    (function () {
+      var h = location.hash;
+      if (!h || h === '#' || h === '#/') {
+        location.replace(location.pathname + location.search + '#/notes');
+      }
+    })();
+  </script>
   <!-- Apply saved theme before paint to avoid a flash (default: dark) -->
   <script>
     (function () {
@@ -47,8 +56,10 @@
       name: 'My AI Learning Journey',
       loadSidebar: true,
       loadNavbar: false,
-      coverpage: true,
-      onlyCover: false,
+      coverpage: false,
+      // '/' renders the welcome page, so a bare route never 404s even if the
+      // redirect below is skipped.
+      homepage: 'notes.md',
       subMaxLevel: 0,
       maxLevel: 4,
       auto2top: true,

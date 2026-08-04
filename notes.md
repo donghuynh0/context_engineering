@@ -1,3 +1,1 @@
-# Notes
-
-Nothing here yet — check back soon.
+# donghuynh'0 notes in learning AI journey

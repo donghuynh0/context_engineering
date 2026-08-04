@@ -9,8 +9,7 @@ ai-learning-journey/
 ├── index.html          ← the app + config 
 ├── assets/custom.css   ← styling 
 ├── _sidebar.md         ← the navigation
-├── _coverpage.md       ← the landing screen
-├── README.md           ← the Home page
+├── notes.md            ← the welcome page (the site opens here)
 ├── _templates/
 │   └── knowledge-template.md   ← copy this to start a new note
 │
