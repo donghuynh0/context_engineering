@@ -4,5 +4,6 @@
        - [Note title](section-folder/note.md) -->
 
 <!-- LLM workflow and AI agent  -->
-- [Foundations](foundations/README.md)
-  - [Tokenization](foundations/tokenization.md)
+- [Foundations](LLM_workflow_AI_agent/overview.md)
+  - [Tokenization](LLM_workflow_AI_agent/details.md)
+  
