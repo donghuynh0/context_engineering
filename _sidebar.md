@@ -4,6 +4,4 @@
        - [Note title](section-folder/note.md) -->
 
 <!-- LLM workflow and AI agent  -->
-- [LLM workflow and AI agent](LLM_workflow_AI_agent/overview.md)
-  - [Details](LLM_workflow_AI_agent/details.md)
-  
+- [LLM workflow and AI agent](LLM_workflow_AI_agent/details.md)  

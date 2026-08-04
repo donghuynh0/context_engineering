@@ -1,6 +1,6 @@
 # <!-- TITLE OF THE NOTE -->
 
-**Status:** <span class="tag">Completed</span> &nbsp;·&nbsp; **Updated:** < 2026-08-04 >
+**Status:** <span class="tag">Completed</span> &nbsp;·&nbsp; **Updated:** 2026-08-04 
 > **Source:** <https://www.anthropic.com/engineering/building-effective-agents>
 
 # Difference between LLM Workflow and AI Agents
