@@ -1,0 +1,185 @@
+/* =========================================================================
+   My AI Learning Journey — custom theme
+   Goal: move Docsify's navigation sidebar to the RIGHT side of the screen
+   and give the whole site a cleaner, more "knowledge-base" feel.
+   ========================================================================= */
+
+:root {
+  --theme-color: #5b8def;          /* accent (links, active nav) */
+  --theme-color-dark: #3f6fd1;
+  --sidebar-width: 300px;
+  --text-color: #2c3e50;
+  --sidebar-bg: #fafbfc;
+  --border-color: #eaecef;
+}
+
+/* ---- Typography ---------------------------------------------------------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  color: var(--text-color);
+}
+
+.markdown-section h1,
+.markdown-section h2,
+.markdown-section h3 {
+  font-weight: 700;
+}
+.markdown-section h2 {
+  padding-top: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+}
+
+/* =========================================================================
+   SIDEBAR ON THE RIGHT
+   Docsify's default vue theme anchors the sidebar to the LEFT. We flip every
+   left/right anchor so navigation lives on the right and content on the left.
+   ========================================================================= */
+
+/* Sidebar itself → pin to the right edge */
+.sidebar {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+  background: var(--sidebar-bg);
+  transition: transform 0.25s ease;
+}
+
+/* Content area → leave room on the RIGHT for the sidebar instead of the left */
+.content {
+  left: 0;
+  right: var(--sidebar-width);
+}
+
+/* Toggle button (the little hamburger) → move to the right */
+.sidebar-toggle {
+  left: auto;
+  right: 0;
+  background-color: transparent;
+}
+
+/* When the sidebar is collapsed, hide it off the RIGHT edge (default hides left) */
+body.close .sidebar {
+  transform: translateX(var(--sidebar-width));
+}
+body.close .content {
+  left: 0;
+  right: 0;
+}
+body.close .sidebar-toggle {
+  right: 0;
+  width: auto;
+}
+
+/* Search box lives inside the sidebar — keep it tidy */
+.sidebar .search {
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ---- Sidebar nav styling ------------------------------------------------ */
+.sidebar > h1 {
+  margin: 1.2rem 0 0.6rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+.sidebar ul li a {
+  color: #5c6b7a;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+.sidebar ul li a:hover {
+  color: var(--theme-color);
+}
+.sidebar ul li.active > a {
+  color: var(--theme-color);
+  font-weight: 600;
+  border-right: none;
+}
+/* Section group titles (top-level **bold** items in _sidebar.md) */
+.sidebar .sidebar-nav > ul > li > strong,
+.sidebar .sidebar-nav > ul > li > p > strong {
+  display: block;
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9aa5b1;
+}
+
+/* =========================================================================
+   MOBILE — Docsify slides the sidebar in. Make it slide in from the RIGHT.
+   ========================================================================= */
+@media screen and (max-width: 768px) {
+  .content {
+    left: 0;
+    right: 0;
+  }
+  .sidebar {
+    right: 0;
+    left: auto;
+    transform: translateX(var(--sidebar-width));
+  }
+  body.close .sidebar {
+    transform: translateX(0);
+  }
+  body.close .content {
+    transform: translateX(calc(-1 * var(--sidebar-width)));
+  }
+  .sidebar-toggle {
+    right: 0;
+    left: auto;
+  }
+}
+
+/* =========================================================================
+   Content polish
+   ========================================================================= */
+.markdown-section {
+  max-width: 820px;
+}
+
+/* Callout boxes: use > [!NOTE] style blockquotes */
+.markdown-section blockquote {
+  border-left: 4px solid var(--theme-color);
+  background: #f3f7ff;
+  border-radius: 0 6px 6px 0;
+  color: #445;
+}
+
+/* Tables */
+.markdown-section table {
+  display: table;
+  width: 100%;
+}
+.markdown-section tr:nth-child(2n) {
+  background-color: #fafbfc;
+}
+
+/* Inline code + code blocks */
+.markdown-section code {
+  color: var(--theme-color-dark);
+  background: #eef3fb;
+}
+.markdown-section pre {
+  border-radius: 8px;
+}
+
+/* "Edit / status" tags you can drop into a note, e.g. <span class="tag">draft</span> */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #eef3fb;
+  color: var(--theme-color-dark);
+  vertical-align: middle;
+}
+
+/* Cover page tweak */
+section.cover .cover-main > p:last-child a {
+  border-radius: 8px;
+}
