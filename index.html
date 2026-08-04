@@ -6,12 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="A personal, growing knowledge base documenting what I learn about AI — agents, context engineering, RAG, prompting, and foundations." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <!-- Apply saved theme before paint to avoid a flash (default: dark) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        document.documentElement.setAttribute(
+          'data-theme', (saved === 'light' || saved === 'dark') ? saved : 'dark'
+        );
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <!-- Docsify theme (base) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
   <!-- Custom styling: right-hand sidebar + polish -->
   <link rel="stylesheet" href="assets/custom.css" />
 </head>
 <body>
+  <!-- Light / dark theme toggle -->
+  <button id="theme-toggle" type="button" aria-label="Toggle light and dark theme" title="Toggle light / dark">
+    <span class="icon-sun" aria-hidden="true">☀</span>
+    <span class="icon-moon" aria-hidden="true">☾</span>
+  </button>
+  <script>
+    (function () {
+      var btn = document.getElementById('theme-toggle');
+      btn.addEventListener('click', function () {
+        var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        var next = cur === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+  </script>
   <div id="app">Loading…</div>
   <script>
     window.$docsify = {
