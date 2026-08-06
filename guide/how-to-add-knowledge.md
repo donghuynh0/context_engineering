@@ -52,6 +52,9 @@ Open [`_sidebar.md`](_sidebar.md). **Indent 2 spaces per level:**
 
 Paths are always written **from the site root**, even for nested notes.
 
+Any item that has children gets a chevron and can be collapsed/expanded by
+clicking it. The section containing the page you're on stays open automatically.
+
 ### Step 3 — Publish
 
 Commit and push:

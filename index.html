@@ -70,6 +70,8 @@
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       },
+      // collapsible sidebar: show only top-level sections until one is opened
+      sidebarDisplayLevel: 1,
       search: {
         placeholder: 'Search the knowledge base…',
         noData: 'No results found.',
@@ -91,6 +93,8 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>
+  <!-- Collapsible sidebar sections (arrows are styled in assets/custom.css) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse@1/dist/docsify-sidebar-collapse.min.js"></script>
   <!-- Syntax highlighting for common languages -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>

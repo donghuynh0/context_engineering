@@ -126,27 +126,39 @@ body.close .content { left: 0; right: 0; }
 .sidebar .search p { color: var(--muted); }
 .sidebar .search .search-keyword { color: var(--accent); }
 
-/* nav hierarchy: level 1 = section, level 2 = day, level 3 = note */
-.sidebar-nav > ul > li > a {                       /* section */
+/* nav hierarchy: level 1 = section, level 2 = day, level 3 = note.
+   NOTE: when a markdown list is "loose" (a blank line between items) Docsify
+   wraps the <a> in a <p>. Every rule below therefore matches both `li > a`
+   and `li > p > a`, so blank lines in _sidebar.md stay harmless. */
+.sidebar-nav li > p { margin: 0; }
+
+.sidebar-nav > ul > li > a,                        /* section */
+.sidebar-nav > ul > li > p > a {
   color: var(--text);
   font-size: 15px;
   font-weight: 600;
-  padding: 4px 0;
+  /* vertical only — the `padding: 4px 0` shorthand would reset the
+     padding-left that reserves room for the chevron */
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
-.sidebar-nav > ul > li > ul > li > a {             /* day */
+.sidebar-nav > ul > li > ul > li > a,              /* day */
+.sidebar-nav > ul > li > ul > li > p > a {
   color: var(--text);
   font-size: 13.5px;
   font-weight: 600;
   opacity: 0.85;
 }
-.sidebar-nav > ul > li > ul > li > ul > li > a {   /* note */
+.sidebar-nav > ul > li > ul > li > ul > li > a,    /* note */
+.sidebar-nav > ul > li > ul > li > ul > li > p > a {
   color: var(--muted);
   font-size: 13px;
   font-weight: 400;
 }
 .sidebar ul li a { transition: color 0.15s; }
 .sidebar ul li a:hover { color: var(--accent); opacity: 1; }
-.sidebar ul li.active > a { color: var(--accent); font-weight: 700; opacity: 1; border-right: none; }
+.sidebar ul li.active > a,
+.sidebar ul li.active > p > a { color: var(--accent); font-weight: 700; opacity: 1; border-right: none; }
 .sidebar-nav > ul > li { margin: 8px 0; }
 /* indent + guide line for the nested levels */
 .sidebar-nav ul ul {
@@ -155,6 +167,45 @@ body.close .content { left: 0; right: 0; }
   border-left: 1px solid var(--border);
 }
 .sidebar-nav ul ul li { margin: 3px 0; }
+
+/* =========================================================================
+   COLLAPSIBLE SECTIONS
+   docsify-sidebar-collapse tags each <li> as .folder (has children) or .file,
+   and toggles .open. It only sets the classes — the show/hide and the chevron
+   below are ours, so they follow the theme.
+   ========================================================================= */
+.sidebar-nav li.folder > ul { display: none; }
+.sidebar-nav li.folder.open > ul { display: block; }
+
+/* leave room for the chevron so folders and leaves line up.
+   The <a> inside a <p> wrapper is inline by default, so padding-left would not
+   reserve real space and the chevron would sit on top of the text — force it
+   to block like the un-wrapped links. */
+.sidebar-nav li > a,
+.sidebar-nav li > p > a { display: block; padding-left: 16px; }
+
+.sidebar-nav li.folder > a,
+.sidebar-nav li.folder > p > a { position: relative; }
+.sidebar-nav li.folder > a::before,        /* chevron: ▸ closed, ▾ open */
+.sidebar-nav li.folder > p > a::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-50%) rotate(-45deg);
+  opacity: 0.55;
+  transition: transform 0.18s ease, opacity 0.15s;
+}
+.sidebar-nav li.folder.open > a::before,
+.sidebar-nav li.folder.open > p > a::before {
+  transform: translateY(-70%) rotate(45deg);
+}
+.sidebar-nav li.folder > a:hover::before,
+.sidebar-nav li.folder > p > a:hover::before { opacity: 1; }
 
 /* =========================================================================
    SIDEBAR HIDE / SHOW TOGGLE — a clear round button, mirrors #theme-toggle.
