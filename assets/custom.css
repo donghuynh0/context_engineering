@@ -126,22 +126,35 @@ body.close .content { left: 0; right: 0; }
 .sidebar .search p { color: var(--muted); }
 .sidebar .search .search-keyword { color: var(--accent); }
 
-/* section list (flat) */
-.sidebar-nav > ul > li > a {
+/* nav hierarchy: level 1 = section, level 2 = day, level 3 = note */
+.sidebar-nav > ul > li > a {                       /* section */
   color: var(--text);
   font-size: 15px;
   font-weight: 600;
   padding: 4px 0;
 }
-.sidebar-nav > ul > li > ul > li > a {
-  color: var(--muted);
+.sidebar-nav > ul > li > ul > li > a {             /* day */
+  color: var(--text);
   font-size: 13.5px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.sidebar-nav > ul > li > ul > li > ul > li > a {   /* note */
+  color: var(--muted);
+  font-size: 13px;
   font-weight: 400;
 }
 .sidebar ul li a { transition: color 0.15s; }
-.sidebar ul li a:hover { color: var(--accent); }
-.sidebar ul li.active > a { color: var(--accent); font-weight: 700; border-right: none; }
+.sidebar ul li a:hover { color: var(--accent); opacity: 1; }
+.sidebar ul li.active > a { color: var(--accent); font-weight: 700; opacity: 1; border-right: none; }
 .sidebar-nav > ul > li { margin: 8px 0; }
+/* indent + guide line for the nested levels */
+.sidebar-nav ul ul {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border);
+}
+.sidebar-nav ul ul li { margin: 3px 0; }
 
 /* =========================================================================
    SIDEBAR HIDE / SHOW TOGGLE — a clear round button, mirrors #theme-toggle.

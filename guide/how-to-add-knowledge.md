@@ -13,22 +13,26 @@ ai-learning-journey/
 ├── _templates/
 │   └── knowledge-template.md   ← copy this to start a new note
 │
-└── <section-folder>/   ← one folder per SECTION 
-    └── README.md       ←   the section's overview / index
+└── fastapi/            ← SECTION = one folder
+    ├── README.md       ←   section overview
+    └── day-01/         ← SUBSECTION = one folder per day
+        ├── README.md   ←   day overview
+        └── pydantic-annotated.md   ← NOTE = the actual content
 ```
 
-One **section** = one **folder**. One **note** = one
-**`.md` file** inside that folder. 
+Three levels: **section** (folder) → **day** (folder) → **note** (`.md` file).
+A section can also be flat — just a folder with notes, no day level.
 
 ---
 
 ## ➕ Add a new note ( 3 steps ) 
 
-### Step 1 — Create the section 
+### Step 1 — Create the folders + file
 
 ```
-foundations/README.md              ← section overview (one line is fine)
-foundations/tokenization.md        ← the actual note
+fastapi/README.md                     ← section overview (one line is fine)
+fastapi/day-02/README.md              ← day overview
+fastapi/day-02/dependency-injection.md  ← the actual note
 ```
 
 Copy [`_templates/knowledge-template.md`](_templates/knowledge-template.md) as a
@@ -36,12 +40,17 @@ starting point for the note
 
 ### Step 2 — Link it in the sidebar
 
-Open [`_sidebar.md`](_sidebar.md) and add lines for the section and note:
+Open [`_sidebar.md`](_sidebar.md). **Indent 2 spaces per level:**
 
 ```markdown
-- [Foundations](foundations/README.md)
-- [Tokenization](foundations/tokenization.md)
+- [FastAPI](fastapi/README.md)
+  - [Day 01](fastapi/day-01/README.md)
+    - [Pydantic & Annotated](fastapi/day-01/pydantic-annotated.md)
+  - [Day 02](fastapi/day-02/README.md)
+    - [Dependency Injection](fastapi/day-02/dependency-injection.md)
 ```
+
+Paths are always written **from the site root**, even for nested notes.
 
 ### Step 3 — Publish
 
